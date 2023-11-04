@@ -1,17 +1,18 @@
-package org.sit.function;
+package org.sit.handler;
 
-import net.mamoe.mirai.Bot;
 import net.mamoe.mirai.contact.NormalMember;
 import net.mamoe.mirai.event.events.MemberJoinRequestEvent;
 import org.sit.abstractclass.AbstractEventHandler;
 import org.sit.exceptions.BusinessException;
 import org.sit.util.StudentIsExists;
+import org.springframework.stereotype.Component;
 
 /**
  * 群聊加群申请处理事件
  * @author WangZhen
  * @date 2023/11/4 8:15
  */
+@Component
 public class MemberJoinRequestEventHandler extends AbstractEventHandler<MemberJoinRequestEvent> {
 
     @Override
