@@ -2,7 +2,7 @@ package org.sit.exceptions;
 
 import org.sit.enums.ErrorCode;
 /**
- * È«¾ÖÒì³£Àà
+ * å…¨å±€å¼‚å¸¸ç±»
  * @author WangZhen
  * @date 2023/11/4 8:15
  */

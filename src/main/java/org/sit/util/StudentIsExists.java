@@ -10,18 +10,18 @@ import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 
 /**
- * ÓÃÓÚÅĞ¶ÏÒ»¸öÑ§ÉúÊÇ·ñÊÇÉÏÓ¦´óÑ§Éú
+ * ç”¨äºåˆ¤æ–­ä¸€ä¸ªå­¦ç”Ÿæ˜¯å¦æ˜¯ä¸Šåº”å¤§å­¦ç”Ÿ
  * @author WangZhen
  */
 public class StudentIsExists {
     private final static String BASE_URL = "https://service-0c20xjtb-1256537839.sh.apigw.tencentcs.com/release/searchForAddGroup?";
 
     /**
-     * ÅĞ¶ÏÒ»¸öÑ§ÉúÊÇ·ñÊÇÉÏÓ¦´óÑ§Éú
-     * @param sno Ñ§ºÅ
-     * @param sname ĞÕÃû
-     * @return ÊÇ
-     * @throws BusinessException Òì³££¬²»ÊÇ
+     * åˆ¤æ–­ä¸€ä¸ªå­¦ç”Ÿæ˜¯å¦æ˜¯ä¸Šåº”å¤§å­¦ç”Ÿ
+     * @param sno å­¦å·
+     * @param sname å§“å
+     * @return æ˜¯
+     * @throws BusinessException å¼‚å¸¸ï¼Œä¸æ˜¯
      */
     public static boolean isExists(String sno, String sname) throws BusinessException {
         final String requestUrl = BASE_URL + "sno=" +sno + "&sname=" + URLEncoder.encode(sname, StandardCharsets.UTF_8);
@@ -29,10 +29,10 @@ public class StudentIsExists {
         try {
             new HttpClient().executeMethod(getMethod);
             String responseBodyAsString = getMethod.getResponseBodyAsString();
-            if(responseBodyAsString != null && responseBodyAsString.contains("´æÔÚ")){
+            if(responseBodyAsString != null && responseBodyAsString.contains("å­˜åœ¨")){
                 return true;
             }else{
-                throw BusinessException.error("²»´æÔÚÄúµÄĞÅÏ¢£¬ÇëÊäÈëÕıÈ·µÄÑ§ºÅ-ĞÕÃû");
+                throw BusinessException.error("ä¸å­˜åœ¨æ‚¨çš„ä¿¡æ¯ï¼Œè¯·è¾“å…¥æ­£ç¡®çš„å­¦å·-å§“å");
             }
         } catch (IOException e) {
             throw BusinessException.error(ErrorCode.NETWORK_ERROR);
