@@ -1,5 +1,9 @@
 package org.sit.enums;
-
+/**
+ * 全局错误信息枚举类
+ * @author WangZhen
+ * @date 2023/11/4 8:15
+ */
 public enum ErrorCode {
     SUCCESS(200, "成功"),
     FAIL(400, "请求失败"),

@@ -9,8 +9,20 @@ import java.io.IOException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 
+/**
+ * 用于判断一个学生是否是上应大学生
+ * @author WangZhen
+ */
 public class StudentIsExists {
     private final static String BASE_URL = "https://service-0c20xjtb-1256537839.sh.apigw.tencentcs.com/release/searchForAddGroup?";
+
+    /**
+     * 判断一个学生是否是上应大学生
+     * @param sno 学号
+     * @param sname 姓名
+     * @return 是
+     * @throws BusinessException 异常，不是
+     */
     public static boolean isExists(String sno, String sname) throws BusinessException {
         final String requestUrl = BASE_URL + "sno=" +sno + "&sname=" + URLEncoder.encode(sname, StandardCharsets.UTF_8);
         GetMethod getMethod = new GetMethod(requestUrl);

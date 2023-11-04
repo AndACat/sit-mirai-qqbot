@@ -1,7 +1,11 @@
 package org.sit.exceptions;
 
 import org.sit.enums.ErrorCode;
-
+/**
+ * 全局异常类
+ * @author WangZhen
+ * @date 2023/11/4 8:15
+ */
 public class BusinessException extends Exception{
     private Integer code;
 
