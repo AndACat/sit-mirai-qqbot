@@ -1,0 +1,15 @@
+constant:
+  qqNum: 195151847
+  password: Q852456q
+  filter:
+    - 问题：学号姓名
+    - 答案：
+
+
+
+server:
+  port: 80
+logging:
+  config: classpath:logback-spring.xml
+  level:
+    root: info
