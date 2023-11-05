@@ -1,4 +1,5 @@
 package org.sit.util;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.sit.enums.ErrorCode;
 import org.sit.exceptions.BusinessException;
@@ -11,6 +12,7 @@ import java.util.regex.Pattern;
  * @author WangZhen
  * @Date 2023/11/5 12:10
  */
+@Slf4j
 public class StudentJoinGroupUtil {
     private final static Pattern SNAME_PATTERN = Pattern.compile("[\\u4e00-\\u9fa5]+");
     private final static Pattern SNO_PATTERN = Pattern.compile("[A-Za-z0-9]+");
@@ -24,6 +26,7 @@ public class StudentJoinGroupUtil {
         while (matcher_sname.find()) {
             String sname = matcher_sname.group(); // 匹配的中文姓名
             if(StringUtils.isEmpty(studentJoinGroupVO.getName())){
+                log.info("解析得到sname = {}", sname);
                 studentJoinGroupVO.setName(sname);
             }
             input = input.replace(sname, "");
@@ -31,6 +34,7 @@ public class StudentJoinGroupUtil {
         Matcher matcher_sno = SNO_PATTERN.matcher(input);
         if(matcher_sno.find()){
             String sno = matcher_sno.group();
+            log.info("解析得到sno = {}", sno);
             studentJoinGroupVO.setSno(sno);
         }
         if(StringUtils.isEmpty(studentJoinGroupVO.getSno()) || StringUtils.isEmpty(studentJoinGroupVO.getName())){

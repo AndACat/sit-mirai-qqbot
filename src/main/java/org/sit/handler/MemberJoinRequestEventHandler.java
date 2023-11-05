@@ -4,11 +4,13 @@ import lombok.extern.slf4j.Slf4j;
 import net.mamoe.mirai.contact.NormalMember;
 import net.mamoe.mirai.event.events.MemberJoinRequestEvent;
 import org.sit.abstractclass.AbstractEventHandler;
+import org.sit.constant.Constant;
 import org.sit.exceptions.BusinessException;
 import org.sit.util.StudentIsExists;
 import org.sit.util.StudentJoinGroupUtil;
 import org.sit.vo.StudentJoinGroupVO;
 import org.springframework.stereotype.Component;
+import javax.annotation.Resource;
 
 /**
  * 群聊加群申请处理事件
@@ -18,6 +20,9 @@ import org.springframework.stereotype.Component;
 @Component
 @Slf4j
 public class MemberJoinRequestEventHandler extends AbstractEventHandler<MemberJoinRequestEvent> {
+
+    @Resource
+    private Constant constant;
 
     @Override
     public void handler(MemberJoinRequestEvent event) {
@@ -36,6 +41,11 @@ public class MemberJoinRequestEventHandler extends AbstractEventHandler<MemberJo
         String message = event.getMessage();
         if(message != null){
             try {
+                for (String s : constant.getFilter()) {
+                    message = message.replace(s, "");
+                }
+                message = message.replace("\n", "");
+                log.info("去除题目之后的message:{}", message);
                 StudentJoinGroupVO studentJoinGroupVO = StudentJoinGroupUtil.getStudentJoinGroupVO(message);
                 if(StudentIsExists.isExists(studentJoinGroupVO.getSno(), studentJoinGroupVO.getName())){
                     log.info("同意入群申请，原始信息：{}， 转换信息为：{}", message, studentJoinGroupVO);

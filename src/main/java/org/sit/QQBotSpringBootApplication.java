@@ -12,8 +12,13 @@ import org.springframework.context.ConfigurableApplicationContext;
 @SpringBootApplication(scanBasePackages = "org.sit")
 class QQBotSpringBootApplication {
     public static void main(String[] args) {
-        ConfigurableApplicationContext run = SpringApplication.run(QQBotSpringBootApplication.class, args);
-        QQBotLoginHandler bean = run.getBean(QQBotLoginHandler.class);
-        bean.login();
+        try {
+            ConfigurableApplicationContext run = SpringApplication.run(QQBotSpringBootApplication.class, args);
+            QQBotLoginHandler bean = run.getBean(QQBotLoginHandler.class);
+            bean.login();
+        }catch (Throwable e){
+            e.printStackTrace();
+        }
+
     }
 }

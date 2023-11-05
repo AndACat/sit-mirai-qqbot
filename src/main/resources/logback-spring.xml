@@ -8,7 +8,7 @@ debug：当此属性设置为true时，将打印出logback内部日志信息，�
     <!-- 定义日志的根目录   建议写绝对路径   如果不写默认在项目运行的根路径( D盘,C盘这种)-->
     <property name="LOG_HOME" value="C:/sit-mirai-qqbot-logs" />
     <!-- 定义日志文件名称 -->
-    <property name="appName" value="question_search"></property>
+    <property name="appName" value="qqbot"></property>
     <!-- ch.qos.logback.core.ConsoleAppender 表示控制台输出 -->
     <appender name="stdout" class="ch.qos.logback.core.ConsoleAppender">
         <!--
@@ -77,9 +77,13 @@ debug：当此属性设置为true时，将打印出logback内部日志信息，�
     表示当前logger的appender-ref和rootLogger的appender-ref都有效
     -->
     <!-- hibernate logger -->
-    <logger name="com.question.ware.controller" level="info" ></logger>
+    <logger name="org.sit" level="info">
+
+    </logger>
     <!-- Spring framework logger -->
-    <logger name="org.springframework" level="debug" additivity="false"></logger>
+    <logger name="org.springframework" level="trace" additivity="false">
+
+    </logger>
 
 
 
