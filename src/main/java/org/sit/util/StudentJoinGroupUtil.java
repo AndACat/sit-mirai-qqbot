@@ -34,7 +34,7 @@ public class StudentJoinGroupUtil {
             studentJoinGroupVO.setSno(sno);
         }
         if(StringUtils.isEmpty(studentJoinGroupVO.getSno()) || StringUtils.isEmpty(studentJoinGroupVO.getName())){
-            throw new BusinessException(ErrorCode.FAIL.getCode(), "未从入群信息中找到学生信息");
+            throw new BusinessException(ErrorCode.FAIL.getCode(), "未从入群信息中找到学生信息, 信息为：" + studentJoinGroupVO.toString());
         }
         return studentJoinGroupVO;
     }

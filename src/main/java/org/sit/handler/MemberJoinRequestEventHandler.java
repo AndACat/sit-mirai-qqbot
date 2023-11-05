@@ -21,6 +21,7 @@ public class MemberJoinRequestEventHandler extends AbstractEventHandler<MemberJo
 
     @Override
     public void handler(MemberJoinRequestEvent event) {
+        log.info("入群请求：{}", event);
         // 1.指定人邀请入群，可直接入群
         NormalMember invitor = event.getInvitor();
         if(invitor != null){

@@ -20,6 +20,8 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.stereotype.Component;
 
+import java.lang.reflect.ParameterizedType;
+import java.lang.reflect.Type;
 import java.util.Map;
 
 /**
@@ -64,8 +66,20 @@ public class QQBotLoginHandler implements ApplicationContextAware {
             AbstractEventHandler eventHandler = stringEventEntry.getValue();
             IgnoreHandler annotation = eventHandler.getClass().getAnnotation(IgnoreHandler.class);
             if(annotation == null){
-                log.info("加载Handler: {}", eventHandler.getClass().getName());
-                eventHandler.joinEvent(bot, stringEventEntry.getKey().getClass());
+
+                Type genericSuperclass = eventHandler.getClass().getGenericSuperclass();
+                if(genericSuperclass instanceof ParameterizedType){
+                    ParameterizedType parameterizedType = (ParameterizedType) genericSuperclass;
+                    Type[] actualTypeArguments = parameterizedType.getActualTypeArguments();
+                    if(actualTypeArguments != null && actualTypeArguments.length == 1){
+                        Type clazz = actualTypeArguments[0];
+                        if(clazz instanceof Class<?>){
+                            Class clazz1 = (Class) clazz;
+                            log.info("加载Handler: {}", clazz1);
+                            eventHandler.joinEvent(bot, clazz1);
+                        }
+                    }
+                }
             }else{
                 log.info("忽略Handler: {}", eventHandler.getClass().getName());
             }
