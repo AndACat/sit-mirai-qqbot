@@ -1,6 +1,6 @@
 constant:
   qqNum: 195151847
-  password: Q852456q
+  password:
   filter:
     - 问题：学号姓名
     - 答案：
