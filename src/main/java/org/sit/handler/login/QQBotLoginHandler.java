@@ -59,23 +59,15 @@ public class QQBotLoginHandler implements ApplicationContextAware {
      * @param bot
      */
     public void afterLogin(Bot bot) {
-//        // 自动回复私聊消息功能
-//        new FriendMessageEventHandler().joinEvent(bot, FriendMessageEvent.class);
-//
-//        // 自动处理入群申请功能
-//        new MemberJoinRequestEventHandler().joinEvent(bot, MemberJoinRequestEvent.class);
-//
-//        new BotJoinGroupEventHandler().joinEvent(bot, BotJoinGroupEvent.class);
-
         Map<String, AbstractEventHandler> beansOfType = applicationContext.getBeansOfType(AbstractEventHandler.class);
         for (Map.Entry<String, AbstractEventHandler> stringEventEntry : beansOfType.entrySet()) {
             AbstractEventHandler eventHandler = stringEventEntry.getValue();
             IgnoreHandler annotation = eventHandler.getClass().getAnnotation(IgnoreHandler.class);
             if(annotation == null){
-//                log.info("加载Handler: {}", eventHandler.getClass().getName());
+                log.info("加载Handler: {}", eventHandler.getClass().getName());
                 eventHandler.joinEvent(bot, stringEventEntry.getKey().getClass());
             }else{
-//                log.info("忽略Handler: {}", eventHandler.getClass().getName());
+                log.info("忽略Handler: {}", eventHandler.getClass().getName());
             }
         }
     }

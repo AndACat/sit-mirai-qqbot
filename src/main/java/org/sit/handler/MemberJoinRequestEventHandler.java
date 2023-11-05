@@ -1,10 +1,13 @@
 package org.sit.handler;
 
+import lombok.extern.slf4j.Slf4j;
 import net.mamoe.mirai.contact.NormalMember;
 import net.mamoe.mirai.event.events.MemberJoinRequestEvent;
 import org.sit.abstractclass.AbstractEventHandler;
 import org.sit.exceptions.BusinessException;
 import org.sit.util.StudentIsExists;
+import org.sit.util.StudentJoinGroupUtil;
+import org.sit.vo.StudentJoinGroupVO;
 import org.springframework.stereotype.Component;
 
 /**
@@ -13,6 +16,7 @@ import org.springframework.stereotype.Component;
  * @date 2023/11/4 8:15
  */
 @Component
+@Slf4j
 public class MemberJoinRequestEventHandler extends AbstractEventHandler<MemberJoinRequestEvent> {
 
     @Override
@@ -20,32 +24,25 @@ public class MemberJoinRequestEventHandler extends AbstractEventHandler<MemberJo
         // 1.指定人邀请入群，可直接入群
         NormalMember invitor = event.getInvitor();
         if(invitor != null){
-            long id = invitor.getId();
-            if(1677688026 == id){
+            int level = invitor.getPermission().getLevel();
+            if(level == 1 || level == 2){
+                // 邀请人为群主或管理员，则自动同意入群
                 event.accept();
-                return;
             }
         }
 
-        // 2.输入学号-姓名，验证信息后可入群
+        // 2.输入学号姓名，验证信息后可入群
         String message = event.getMessage();
         if(message != null){
-            String[] split = message.split("-");
-            if(split.length != 2){
-                event.reject(false, "入群申请输入格式错误。学号-姓名");
-            }else{
-                String sno = split[0];
-                String sname = split[1];
-                try {
-                    if(StudentIsExists.isExists(sno, sname)){
-                        event.accept();
-                    }
-                } catch (BusinessException e) {
-                    event.reject(false, e.getMessage());
+            try {
+                StudentJoinGroupVO studentJoinGroupVO = StudentJoinGroupUtil.getStudentJoinGroupVO(message);
+                if(StudentIsExists.isExists(studentJoinGroupVO.getSno(), studentJoinGroupVO.getName())){
+                    log.info("同意入群申请，原始信息：{}， 转换信息为：{}", message, studentJoinGroupVO);
+                    event.accept();
                 }
+            } catch (BusinessException e) {
+                log.info("原始信息：{}， 错误信息：{}", message, e.getMessage());
             }
-        }else {
-            event.reject(false, "请输入学号-姓名，并重新申请加群。");
         }
     }
 }

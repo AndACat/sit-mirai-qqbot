@@ -1,3 +1,11 @@
 constant:
   qqNum: 3377576149
   password: 50+50=100
+
+
+server:
+  port: 80
+logging:
+  config: classpath:logback-spring.xml
+  level:
+    root: info

@@ -9,6 +9,7 @@ public enum ErrorCode {
     FAIL(400, "请求失败"),
     ERROR(9999, "系统错误"),
     NETWORK_ERROR(401, "网络错误，请联系管理员入群。"),
+
     ;
 
     private Integer code;
