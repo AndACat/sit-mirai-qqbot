@@ -20,5 +20,5 @@ import java.util.List;
 public class Constant {
     private String qqNum;
     private String password;
-    private List<String> filter;
+    private List<String> filterList;
 }

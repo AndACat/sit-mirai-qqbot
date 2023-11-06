@@ -41,7 +41,7 @@ public class MemberJoinRequestEventHandler extends AbstractEventHandler<MemberJo
         String message = event.getMessage();
         if(message != null){
             try {
-                for (String s : constant.getFilter()) {
+                for (String s : constant.getFilterList()) {
                     message = message.replace(s, "");
                 }
                 message = message.replace("\n", "");

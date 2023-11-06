@@ -1,7 +1,7 @@
 constant:
   qqNum: 3377576149
   password:
-  filter:
+  filterList:
     - 问题：学号姓名
     - 答案：
 
