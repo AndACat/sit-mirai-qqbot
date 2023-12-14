@@ -5,7 +5,7 @@ package org.sit.enums;
  * @date 2023/11/4 8:15
  */
 public enum ErrorCode {
-    SUCCESS(200, "成功"),
+    SUCCESS(0, "成功"),
     FAIL(400, "请求失败"),
     ERROR(9999, "系统错误"),
     NETWORK_ERROR(401, "网络错误，请联系管理员入群。"),

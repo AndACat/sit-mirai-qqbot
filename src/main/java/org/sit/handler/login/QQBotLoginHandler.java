@@ -66,7 +66,6 @@ public class QQBotLoginHandler implements ApplicationContextAware {
             AbstractEventHandler eventHandler = stringEventEntry.getValue();
             IgnoreHandler annotation = eventHandler.getClass().getAnnotation(IgnoreHandler.class);
             if(annotation == null){
-
                 Type genericSuperclass = eventHandler.getClass().getGenericSuperclass();
                 if(genericSuperclass instanceof ParameterizedType){
                     ParameterizedType parameterizedType = (ParameterizedType) genericSuperclass;

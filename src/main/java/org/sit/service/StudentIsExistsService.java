@@ -1,9 +1,10 @@
-package org.sit.util;
+package org.sit.service;
 
 import org.apache.commons.httpclient.HttpClient;
 import org.apache.commons.httpclient.methods.GetMethod;
 import org.sit.enums.ErrorCode;
 import org.sit.exceptions.BusinessException;
+import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.net.URLEncoder;
@@ -13,7 +14,8 @@ import java.nio.charset.StandardCharsets;
  * 用于判断一个学生是否是上应大学生
  * @author WangZhen
  */
-public class StudentIsExists {
+@Service
+public class StudentIsExistsService {
     private final static String BASE_URL = "https://service-0c20xjtb-1256537839.sh.apigw.tencentcs.com/release/searchForAddGroup?";
 
     /**
@@ -23,7 +25,7 @@ public class StudentIsExists {
      * @return 是
      * @throws BusinessException 异常，不是
      */
-    public static boolean isExists(String sno, String sname) throws BusinessException {
+    public boolean isExists(String sno, String sname) throws BusinessException {
         final String requestUrl = BASE_URL + "sno=" +sno + "&sname=" + URLEncoder.encode(sname, StandardCharsets.UTF_8);
         GetMethod getMethod = new GetMethod(requestUrl);
         try {

@@ -6,7 +6,7 @@ import org.sit.enums.ErrorCode;
  * @author WangZhen
  * @date 2023/11/4 8:15
  */
-public class BusinessException extends Exception{
+public class BusinessException extends RuntimeException{
     private Integer code;
 
     public BusinessException(Integer code, String message) {

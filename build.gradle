@@ -62,6 +62,16 @@ dependencies {
     // lombok
     implementation 'org.projectlombok:lombok:1.18.28'
     annotationProcessor 'org.projectlombok:lombok:1.18.28'
+    //guava cache
+    implementation 'org.springframework.boot:spring-boot-starter-cache:2.6.13'
+    implementation 'org.springframework:spring-context-support'
+    implementation 'org.springframework:spring-context'
+    implementation 'com.github.ben-manes.caffeine:caffeine'
+    // fastjson
+    implementation 'com.alibaba:fastjson:1.2.79'
+    // apache-commons4
+    implementation 'commons-lang:commons-lang:2.6'
+    implementation 'commons-collections:commons-collections:3.2.2'
 
 
     testImplementation platform('org.junit:junit-bom:5.9.1')

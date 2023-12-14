@@ -11,4 +11,8 @@ server:
 logging:
   config: classpath:logback-spring.xml
   level:
-    root: info
+    root: debug
+
+
+url:
+  aliyunIp: http://139.224.204.81

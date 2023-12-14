@@ -1,8 +1,6 @@
 package org.sit.vo;
 
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 import org.sit.enums.ErrorCode;
 
 /**
@@ -12,6 +10,7 @@ import org.sit.enums.ErrorCode;
 @Setter
 @Getter
 @ToString
+@NoArgsConstructor
 public class ResponseData<T> {
     private Integer code;
     private String message;
@@ -21,7 +20,7 @@ public class ResponseData<T> {
         this.code = code;
         this.message = message;
     }
-    private ResponseData(Integer code, String message, T data) {
+    public ResponseData(Integer code, String message, T data) {
         this.code = code;
         this.message = message;
         this.data = data;

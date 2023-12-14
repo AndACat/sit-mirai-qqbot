@@ -11,11 +11,14 @@ import org.springframework.context.ConfigurableApplicationContext;
  */
 @SpringBootApplication(scanBasePackages = "org.sit")
 class QQBotSpringBootApplication {
+    private static final Boolean startWithQQ = Boolean.TRUE;
     public static void main(String[] args) {
         try {
             ConfigurableApplicationContext run = SpringApplication.run(QQBotSpringBootApplication.class, args);
-            QQBotLoginHandler bean = run.getBean(QQBotLoginHandler.class);
-            bean.login();
+            if(startWithQQ){
+                QQBotLoginHandler bean = run.getBean(QQBotLoginHandler.class);
+                bean.login();
+            }
         }catch (Throwable e){
             e.printStackTrace();
         }
